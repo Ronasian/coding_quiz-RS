@@ -8,33 +8,26 @@
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <header>
-      <h1>Coding Quiz</h1>
-      <p id="timer">Time: 00</p>
-    </header>
-    <main>
-      <section class="quiz-greeting">
-        <!-- <h2>Welcome to My Coding Quiz!</h2>
-        <p>Please answer as many questions as you can before the timer runs out.
-        Note that when you get a question wrong, your time will be subtracted!
-        You will recieve points for every correct answer. Do your best!
-        </p>
-        <button id="start-button">START</button> -->
-      </section>
-      <section class="quiz-content">
-        <!-- <h2 id="question">Question</h2>
-        <div class="answers">
-          <button id="option-1">Option 1</button>
-          <button id="option-2">Option 2</button>
-          <button id="option-3">Option 3</button>
-          <button id="option-4">Option 4</button>
-        </div> -->
-      </section>
-      <section class="quiz-complete">
-        <!-- <h2>Finished!</h2>
-        <p></p>
-        <input id="initials-input"> -->
-      </section>
+    <main class="quiz-container">
+      <div id="quiz-greeting">
+        <h2>Coding Quiz</h2>
+          <p>Please answer as many questions as you can before the timer runs out.
+            Note that when you get a question wrong, your time will be subtracted!
+            You will recieve points for every correct answer.
+          </p>
+          <p>GOOD LUCK!</p>
+      </div>  
+      <div id="quiz-timer" class="hidden">Timer: 0</div>
+      <div id="quiz-content" class="hidden">
+        <h2 id="question">Question</h2>
+        <div id="answer-buttons" >
+          <button class="answer">Option 1</button>
+          <button class="answer">Option 2</button>
+          <button class="answer">Option 3</button>
+          <button class="answer">Option 4</button>
+        </div>
+      </div>
+      <div id="start-button" class="visible">START</div>
     </main>
 	<script src="./assets/js/script.js"></script>
   </body>
