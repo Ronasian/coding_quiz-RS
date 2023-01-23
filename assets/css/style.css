@@ -24,7 +24,7 @@ body {
     box-shadow: 0 0 20px 5px;
 }
 
-h2, p {
+#quiz-greeting {
     text-align: center;
 }
 
@@ -37,7 +37,7 @@ h2, p {
     right: 25px;
 }
 
-#answer-buttons {
+#answers {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -47,7 +47,7 @@ h2, p {
     margin-right: auto;
 }
 
-.answer {
+.option {
     font-size: 15px;
     color: white;
     background-color: #af93d7;
