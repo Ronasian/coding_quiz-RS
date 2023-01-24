@@ -1,4 +1,4 @@
-// elements needed
+// grab essential elements
 var greeting = document.querySelector('#quiz-greeting');
 var startBtn = document.querySelector('#start-button');
 var quizContent = document.querySelector('#quiz-content');
@@ -14,13 +14,12 @@ var results = document.querySelector('#results');
 var initials = document.querySelector('#initials');
 var submitBtn = document.querySelector('#submit-button');
 
-// variables for score, current question set index, timer, etc
+// create variables in the global scope; values subject to change with functions
 var score = 0;
 var currentSet = 0;
 var timer = 30;
-var questionIndex = 0;
 
-// quiz content array of objects
+// create array of multiple choice question sets
 var questionSets = [
   {
     question: "Who?",
@@ -62,65 +61,89 @@ var questionSets = [
     d: "weinerschnizel",
     correct: "a"
   },
-]
+];
 
 // startQuiz function
 function startQuiz() {
   console.log('Game Started');
+  // hide greeting elements
   greeting.classList.remove('visible');
   greeting.classList.add('hidden');
+  // reveal quiz elements
   quizContent.classList.remove('hidden');
   quizContent.classList.add('visible');
+  // call to functions to initiate quiz content
   setQuestion();
   setTimer();
-}
+};
 
 function setQuestion() {
+  console.log("Question #" + (currentSet + 1));
+  // set question text content to be the value of question in the current set of question sets
   question.textContent = questionSets[currentSet].question;
+  // set options text content to be the value of the letter options in the current set of question sets
   optA.textContent = questionSets[currentSet].a;
   optB.textContent = questionSets[currentSet].b;
   optC.textContent = questionSets[currentSet].c;
   optD.textContent = questionSets[currentSet].d;
-}
+};
 
 // selectAnswer function
 function selectAnswer(event) {
+  // create variable for correct letter option at the current set of question sets
   var correctOpt = questionSets[currentSet].correct;
+  // create variable for correct answer using correctOpt variable as object key
   var correctAnswer = questionSets[currentSet][correctOpt];
+  // if clicked answer is correct,
   if (event.srcElement.innerHTML === correctAnswer) {
+    console.log("Correct! (+20 pts)");
+    // add 20 points to score
     score += 20;
+    // change to next question by adding 1 to currentSet (value used as and index)
     currentSet++;
-    console.log(currentSet);
-  } else if (event.srcElement.innerHTML !== correctAnswer) {
+  } else {
+    console.log("Incorrect! (-5 sec)");
+    // subtract 5 from timer
     timer -= 5;
+    // change to next question by adding 1 to currentSet (value used as and index)
     currentSet++;
   }
+  // if currentSet is within length of the set
   if (currentSet < questionSets.length) {
+    // set another question
     setQuestion();
-  } else {
+  } else { // otherwise
+    //end the quiz
     endQuiz();
   }
-  
-}
+};
 
-// scoreInput function
+// endQuiz function
 function endQuiz() {
   console.log("Final Score: " + score);
+  // hide quiz content
   quizContent.classList.remove('visible');
   quizContent.classList.add('hidden');
+  // reveal score submission section
   scoreSubmission.classList.remove('hidden');
   scoreSubmission.classList.add('visible');
+  // set result text to reveal score to user
   results.textContent = "You got " + score + " points!";
-}
+};
 
 // setTimer function
 function setTimer() {
+    // create variable for interval
     var timerInterval = setInterval(function() {
+    // timer goes down by one every 1000 ms
     timer--;
+    // timer element updates in real time
     timerEl.textContent = "Timer: " + timer;
-    if(timer <= 0) {
+    // if the timer is less than or equal to zero AND the current set value is less than the legnth of questionSets
+    if (timer <= 0 && currentSet < questionSets.length) {
       // Stop execution of action at setInterval function
       clearInterval(timerInterval);
+      // end the quiz
       endQuiz();
     }
   }, 1000);
