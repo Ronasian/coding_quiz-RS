@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
+    <!-- contains all quiz elements in "card" form -->
     <main class="quiz-container">
+      <!-- Introduction to quiz webpage with start button to begin -->
       <section id="quiz-greeting" class="visible">
         <h2>Coding Quiz</h2>
           <p>Please answer as many questions as you can before the timer runs out.
@@ -17,7 +19,8 @@
           </p>
           <p>GOOD LUCK!</p>
           <button class="button" id="start-button">START</button>
-      </section>  
+      </section>
+      <!-- quiz questions and answers with timer -->
       <section id="quiz-content" class="hidden">
         <div id="quiz-timer"></div>
         <h2 id="question"></h2>
@@ -28,6 +31,7 @@
           <button class="option" id="d">Option 4</button> 
         </div>
     </section>
+    <!-- end of quiz score submission -->
     <section id="quiz-score" class="hidden">
         <h2 id="results"></h2>
         <p>Please enter your initials</p>
