@@ -22,43 +22,43 @@ var timer = 30;
 // create array of multiple choice question sets
 var questionSets = [
   {
-    question: "Who?",
-    a: "Me",
-    b: "You",
-    c: "Him",
-    d: "Her",
+    question: "JavaScript objects are represented and created using",
+    a: "curly brackets",
+    b: "parentheses",
+    c: "quotations",
+    d: "square brackets",
     correct: "a"
   },
   {
-    question: "What?",
-    a: "This",
-    b: "That",
-    c: "Those",
-    d: "Nothing",
+    question: "Unassigned properties of an object are ___.",
+    a: "defined",
+    b: "undefined",
+    c: "null",
+    d: "empty",
     correct: "b"
   },
   {
-    question: "Where?",
-    a: "Here",
-    b: "There",
-    c: "Nowhere",
-    d: "Everywhere",
+    question: "Property accessors provide access to an object's properties by using the ___ notation or the ___ notation.",
+    a: "dot; curly bracket",
+    b: "dot; quotation",
+    c: "dot; square bracket",
+    d: "curly bracket; square bracket",
     correct: "c"
   },
   {
-    question: "Why?",
-    a: "Because",
-    b: "IDK",
-    c: "Cause",
-    d: "Yes",
+    question: "We pass ___ to a function at call-time.",
+    a: "parameters",
+    b: "variables",
+    c: "callbacks",
+    d: "arguments",
     correct: "d"
   },
   {
-    question: "How?",
-    a: "bloop",
-    b: "bleep",
-    c: "skrraa",
-    d: "weinerschnizel",
+    question: "A(n) ___ function is a function that takes another function as an parameter or returns a function.",
+    a: "high-order",
+    b: "object",
+    c: "array",
+    d: "variable",
     correct: "a"
   },
 ];

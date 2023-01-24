@@ -2,7 +2,7 @@
 
 ## Description
 
-For this project, I will create a webpage for a coding quiz that will put what I have learned during my bootcamp up to module 4, which inludes HTML, CSS, JavaScript, and Web APIs. The quiz should be timed, multiple choice, and scores should be able to be saved under user initials. It should allow the user to interact with buttons, as well as provide visual feedback on right or wrong answers.
+For this project, I will create a webpage for a coding quiz that will require what I have learned during my bootcamp up to module 4, which inludes HTML, CSS, JavaScript, and Web APIs. The quiz should be timed, multiple choice, and scores should be able to be saved under user initials. It should allow the user to interact with buttons. The user is rewarded points for correct answers and time is deducted for incorrect answers.
 
 ## Deployed Application:
 ### Link:

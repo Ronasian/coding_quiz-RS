@@ -33,8 +33,11 @@ body {
 }
 
 #quiz-timer {
+    font-weight: bolder;
+    color: #44196e;
     position: absolute;
     right: 25px;
+    top: 25px
 }
 
 #answers {
@@ -57,9 +60,7 @@ body {
     margin: 5px;
 }
 
-#start-button,
-#submit-button,
-#retry-button {
+.button {
     color: white;
     background-color: #44196e;
     padding: 10px;
