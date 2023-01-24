@@ -57,7 +57,9 @@ body {
     margin: 5px;
 }
 
-#start-button {
+#start-button,
+#submit-button,
+#retry-button {
     color: white;
     background-color: #44196e;
     padding: 10px;

@@ -1,92 +1,104 @@
-var greetingEl = document.querySelector('#quiz-greeting');
-var startButton = document.querySelector('#start-button');
-var quizEl = document.querySelector('#quiz-content');
-var quizQuestion = document.querySelector('#question');
-var quizAnswers = document.querySelector('#answers');
+// elements needed
+var greeting = document.querySelector('#quiz-greeting');
+var startBtn = document.querySelector('#start-button');
+var quizContent = document.querySelector('#quiz-content');
 var timerEl = document.querySelector('#quiz-timer');
+var question = document.querySelector('#question');
+var optA = document.querySelector('#a');
+var optB = document.querySelector('#b');
+var optC = document.querySelector('#c');
+var optD = document.querySelector('#d');
+var scoreSubmission = document.querySelector('#quiz-score');
+var score = document.querySelector('#score');
+var initials = document.querySelector('#initials');
+var submitBtn = document.querySelector('#submit-button');
 
-var quizContent = [
+// variables for score, current question set index, timer, etc
+var score = 0;
+var currentSet = 0;
+var timer = 3;
+
+// quiz content array of objects
+var questionSets = [
   {
-    question: 'Who is',
-    answers: [
-      {text: 'right', correct: true},
-      {text: 'wrong', correct: false},
-      {text: 'wrong', correct: false},
-      {text: 'wrong', correct: false}
-    ]
+    question: "Who?",
+    a: "Me",
+    b: "You",
+    c: "Him",
+    d: "Her",
+    correct: "a"
   },
   {
-    question: 'What is',
-    answers: [
-      {text: 'wrong', correct: true},
-      {text: 'right', correct: false},
-      {text: 'wrong', correct: false},
-      {text: 'wrong', correct: false}
-    ]
+    question: "What?",
+    a: "This",
+    b: "That",
+    c: "Those",
+    d: "Nothing",
+    correct: "b"
   },
   {
-    question: 'Why is',
-    answers: [
-      {text: 'wrong', correct: true},
-      {text: 'wrong', correct: false},
-      {text: 'right', correct: false},
-      {text: 'wrong', correct: false}
-    ]
+    question: "Where?",
+    a: "Here",
+    b: "There",
+    c: "Nowhere",
+    d: "Everywhere",
+    correct: "c"
   },
   {
-    question: 'Where is',
-    answers: [
-      {text: 'wrong', correct: true},
-      {text: 'wrong', correct: false},
-      {text: 'wrong', correct: false},
-      {text: 'right', correct: false}
-    ]
+    question: "Why?",
+    a: "Because",
+    b: "IDK",
+    c: "Cause",
+    d: "Yes",
+    correct: "d"
   },
   {
-    question: 'How is',
-    answers: [
-      {text: 'right', correct: true},
-      {text: 'wrong', correct: false},
-      {text: 'wrong', correct: false},
-      {text: 'wrong', correct: false}
-    ]
-  }
+    question: "How?",
+    a: "bloop",
+    b: "bleep",
+    c: "skrraa",
+    d: "weinerschnizel",
+    correct: "a"
+  },
 ]
 
+// startQuiz function
 function startQuiz() {
   console.log('Game Started');
-  greetingEl.classList.remove('visible');
-  greetingEl.classList.add('hidden');
-  quizEl.classList.remove('hidden');
-  quizEl.classList.add('visible');
-  setQuestions();
-  setTimer(30);
+  greeting.classList.remove('visible');
+  greeting.classList.add('hidden');
+  quizContent.classList.remove('hidden');
+  quizContent.classList.add('visible');
+
+  setTimer();
 }
 
-function setQuestions () {
-  quizEl.classList.remove('hidden');
-  quizEl.classList.add('visible');
-  var currentIndex = Math.floor(Math.random() * quizContent.length);
-  quizQuestion.textContent = quizContent[currentIndex].question;
-  for (var i = 0; i < quizContent[currentIndex].answers.length; i++) {
-    var quizOption = document.createElement("button");
-    quizOption.classList.add('option');
-    quizOption.textContent = quizContent[currentIndex].answers[i].text;
-    quizAnswers.appendChild(quizOption);
-  }
+function setQuestion() {
+  
 }
 
-function setTimer(seconds) {
-  // create variable for setInterval function
-  var timerInterval = setInterval(function() {
-    seconds--;
-    timerEl.textContent = "Timer: " + seconds;
-    if(seconds === 0) {
+// selectAnswer function
+
+// scoreInput function
+function endQuiz() {
+  quizContent.classList.remove('visible');
+  quizContent.classList.add('hidden');
+  scoreSubmission.classList.remove('hidden');
+  scoreSubmission.classList.add('visible');
+}
+
+// setTimer function
+function setTimer() {
+    var timerInterval = setInterval(function() {
+    timer--;
+    timerEl.textContent = "Timer: " + timer;
+    if(timer === 0) {
       // Stop execution of action at setInterval function
       clearInterval(timerInterval);
+      endQuiz();
     }
   }, 1000);
 }
 
-startButton.addEventListener('click', startQuiz);
-quizOption.addEventListener('click', )
+// event listeners for start button and answers
+startBtn.addEventListener('click', startQuiz);
