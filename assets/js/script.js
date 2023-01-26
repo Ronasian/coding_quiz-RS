@@ -16,6 +16,7 @@ var inputMessage = document.querySelector('#input-message');
 var submitBtn = document.querySelector('#submit-button');
 var scoreboard = document.querySelector('#scoreboard');
 
+
 // create variables in the global scope; values subject to change with functions
 var score = 0;
 var currentSet = 0;
@@ -155,6 +156,11 @@ function renderScores() {
   for (var i = 0; i < storedScores.length; i++) {
     var li = document.createElement("li");
     li.textContent = storedScores[i];
+    if (i % 2 === 0) {
+      li.style.backgroundColor = "#af93d7"
+    } else {
+      li.style.backgroundColor = "light-grey"
+    }
     scoreboard.appendChild(li);
   }
 };
