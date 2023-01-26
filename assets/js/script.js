@@ -20,7 +20,7 @@ var scoreboard = document.querySelector('#scoreboard');
 // create variables in the global scope; values subject to change with functions
 var score = 0;
 var currentSet = 0;
-var timer = 30;
+var timer = 50;
 var storedScores = [];
 
 // create array of multiple choice question sets
@@ -107,9 +107,9 @@ function selectAnswer(event) {
     // change to next question by adding 1 to currentSet (value used as and index)
     currentSet++;
   } else {
-    console.log("Incorrect! (-5 sec)");
+    console.log("Incorrect! (-10 sec)");
     // subtract 5 from timer
-    timer -= 5;
+    timer -= 10;
     // change to next question by adding 1 to currentSet (value used as and index)
     currentSet++;
   }
