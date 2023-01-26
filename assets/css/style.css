@@ -59,6 +59,14 @@ body {
     border-radius: 5px;
     margin: 5px;
 }
+
+#quiz-score {
+    text-align: center;
+}
+
+input {
+    width: 100px;
+}
 /* Styling for start and submit buttons */
 .button {
     color: white;

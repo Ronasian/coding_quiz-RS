@@ -12,12 +12,15 @@ var optD = document.querySelector('#d');
 var scoreSubmission = document.querySelector('#quiz-score');
 var results = document.querySelector('#results');
 var initials = document.querySelector('#initials');
+var inputMessage = document.querySelector('#input-message');
 var submitBtn = document.querySelector('#submit-button');
+var scoreboard = document.querySelector('#scoreboard');
 
 // create variables in the global scope; values subject to change with functions
 var score = 0;
 var currentSet = 0;
 var timer = 30;
+var storedScores = [];
 
 // create array of multiple choice question sets
 var questionSets = [
@@ -63,7 +66,7 @@ var questionSets = [
   },
 ];
 
-// startQuiz function
+// starts the quiz and timer when user clicks start
 function startQuiz() {
   console.log('Game Started');
   // hide greeting elements
@@ -77,6 +80,7 @@ function startQuiz() {
   setTimer();
 };
 
+// sets questions and answers from question set at the current index
 function setQuestion() {
   console.log("Question #" + (currentSet + 1));
   // set question text content to be the value of question in the current set of question sets
@@ -88,7 +92,7 @@ function setQuestion() {
   optD.textContent = questionSets[currentSet].d;
 };
 
-// selectAnswer function
+// answers that are clicked are checked if correct
 function selectAnswer(event) {
   // create variable for correct letter option at the current set of question sets
   var correctOpt = questionSets[currentSet].correct;
@@ -118,7 +122,7 @@ function selectAnswer(event) {
   }
 };
 
-// endQuiz function
+// end the quiz after time runs out or all questions are answered
 function endQuiz() {
   console.log("Final Score: " + score);
   // hide quiz content
@@ -130,6 +134,54 @@ function endQuiz() {
   // set result text to reveal score to user
   results.textContent = "You got " + score + " points!";
 };
+
+// initializes stored scores to the scores in the local storage
+function initScores() {
+  // get parsed version of scores
+  var localScores = JSON.parse(localStorage.getItem("scores"));
+  // set our array of scores to be equal to the scores in local storage if local storage exists
+  if (localScores !== null) {
+    storedScores = localScores;
+  }
+};
+
+function renderScores() {
+  // hide submission form and display scoreboard
+  scoreSubmission.classList.remove('visible');
+  scoreSubmission.classList.add('hidden');
+  scoreboard.classList.remove('hidden');
+  scoreboard.classList.add('visible');
+  // Render a new li for each score
+  for (var i = 0; i < storedScores.length; i++) {
+    var li = document.createElement("li");
+    li.textContent = storedScores[i];
+    scoreboard.appendChild(li);
+  }
+};
+
+function storeScores() {
+  // Stringify and set key in localStorage to storedScores array
+  localStorage.setItem("scores", JSON.stringify(storedScores));
+};
+
+// Add click event to form
+submitBtn.addEventListener("click", function(event) {
+
+  var scoreText = initials.value.toUpperCase().trim() + " - " + score;
+
+  // Give red error message and return from function early if submitted initials is invalid
+  if (initials.value.toUpperCase().trim().length !== 2) {
+    inputMessage.textContent = "Please enter a valid input (initials should be two letters)";
+    inputMessage.style.color = "red";
+    return;
+  } else {
+    // Add new score to storedScores array
+    storedScores.push(scoreText);
+  }
+  // set and render scores
+  storeScores();
+  renderScores();
+});
 
 // setTimer function
 function setTimer() {
@@ -147,11 +199,14 @@ function setTimer() {
       endQuiz();
     }
   }, 1000);
-}
+};
 
-// event listeners for start button and answers
+// event listener for start button
 startBtn.addEventListener('click', startQuiz);
+// event listeners for answer selection
 optA.addEventListener('click', selectAnswer);
 optB.addEventListener('click', selectAnswer);
 optC.addEventListener('click', selectAnswer);
 optD.addEventListener('click', selectAnswer);
+// call to function to initialize scores array when page loads
+initScores();
